@@ -1,7 +1,9 @@
 services:
   web:
-    image: ghcr.io/stephanevdb/borg-backup-manager:latest
-    pull_policy: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: borg-backup-manager:dev
     ports:
       - "5001:5001"
     cap_add:

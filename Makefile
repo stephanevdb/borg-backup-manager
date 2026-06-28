@@ -1,4 +1,4 @@
-.PHONY: dev dev-backend dev-frontend build test docker-build migrate
+.PHONY: dev dev-backend dev-frontend build test docker-build docker-up docker-dev migrate
 
 SECRET_KEY ?= dev-secret-key-change-in-production
 
@@ -25,6 +25,13 @@ test:
 
 docker-build: build-frontend
 	docker build -t borg-backup-manager:latest .
+
+docker-up:
+	docker compose pull
+	docker compose up -d
+
+docker-dev:
+	docker compose -f docker-compose.dev.yml up --build -d
 
 migrate:
 	cd backend && SECRET_KEY=$(SECRET_KEY) go run ./cmd/server/ --migrate-only 2>/dev/null || true

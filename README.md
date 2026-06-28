@@ -48,12 +48,25 @@ The Go binary embeds the Vue SPA and serves it on port 5001.
 
 ## Docker
 
+Production (pull published image from GHCR):
+
 ```bash
 cp .env.example .env
 # Set SECRET_KEY in .env (openssl rand -hex 32)
-make docker-build
+docker compose pull
 docker compose up -d
 ```
+
+Or: `make docker-up`
+
+Local development (build from source):
+
+```bash
+cp .env.example .env
+docker compose -f docker-compose.dev.yml up --build -d
+```
+
+Or: `make docker-dev`
 
 Requires `SYS_ADMIN`, `/dev/fuse`, and Borg/sshfs/rclone in the container for full remote backup support.
 
