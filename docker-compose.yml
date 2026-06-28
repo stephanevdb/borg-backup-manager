@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5001:5001"
+    cap_add:
+      - SYS_ADMIN
+    privileged: true
+    devices:
+      - /dev/fuse:/dev/fuse
+    environment:
+      - SECRET_KEY=rftgyhujik
+      - AUTH_DISABLED=${AUTH_DISABLED:-true}
+      - OIDC_WELL_KNOWN_ENDPOINT=${OIDC_WELL_KNOWN_ENDPOINT:-}
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID:-}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET:-}
+      - ALLOWED_GROUPS=${ALLOWED_GROUPS:-}
+    volumes:
+      - ./data:/app/data
+      - ./backup:/backup
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:5001/health/ready"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s

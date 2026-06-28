@@ -1,0 +1,13 @@
+.git
+.github
+data/
+backup/
+sessions/
+bin/
+.env
+*.db
+
+frontend/node_modules/
+frontend/dist/
+
+backend/cmd/server/static/

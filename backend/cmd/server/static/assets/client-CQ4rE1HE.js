@@ -1,0 +1,1 @@
+async function e(e,t={}){let n=await fetch(`/api/v1`+e,{credentials:`include`,headers:{"Content-Type":`application/json`,...t.headers||{}},...t});if(n.status===401)throw Error(`unauthorized`);if(!n.ok){let e=await n.json().catch(()=>({}));throw Error(e.error||n.statusText)}return n.json()}export{e as t};
