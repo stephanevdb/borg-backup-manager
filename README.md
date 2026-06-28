@@ -59,7 +59,9 @@ docker compose up -d
 
 Or: `make docker-up`
 
-Local development (build from source):
+Images are published for **linux/amd64** and **linux/arm64** (Apple Silicon). If `latest` was built before multi-arch CI, use the dev compose below until a new image is pushed.
+
+Local development (build from source — use on Apple Silicon if GHCR has no arm64 tag yet):
 
 ```bash
 cp .env.example .env
