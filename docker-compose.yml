@@ -8,8 +8,10 @@ services:
     privileged: true
     devices:
       - /dev/fuse:/dev/fuse
+    env_file:
+      - .env
     environment:
-      - SECRET_KEY=rftgyhujik
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env — see .env.example}
       - AUTH_DISABLED=${AUTH_DISABLED:-true}
       - OIDC_WELL_KNOWN_ENDPOINT=${OIDC_WELL_KNOWN_ENDPOINT:-}
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID:-}

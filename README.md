@@ -49,6 +49,8 @@ The Go binary embeds the Vue SPA and serves it on port 5001.
 ## Docker
 
 ```bash
+cp .env.example .env
+# Set SECRET_KEY in .env (openssl rand -hex 32)
 make docker-build
 docker compose up -d
 ```
@@ -68,3 +70,7 @@ backend/     Go API, Borg engine, scheduler
 frontend/    Vue 3 SPA
 docs/        API and technical documentation
 ```
+
+## License
+
+This project is licensed under the [GNU General Public License v3.0](LICENSE).
